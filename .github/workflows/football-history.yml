@@ -1,0 +1,132 @@
+name: Football history
+
+# The archive's past and current seasons for every followed league (match_archive.py history; docs/INVENTORY.md), so a club's page has its
+# last seasons: one job per league (a matrix, Saudi first, a failed league does not stop the others), then ONE job merges the leagues,
+# rebuilds teams/, h2h/ and results/, checks the counts, and publishes football/archive in one commit (tools/publish.py). UrTV's
+# league-fixtures.yml copies football/archive to its data-archive branch unchanged (the apps up to 4.3.2) and opens the data-health issue.
+#
+# Nightly it goes on by itself: each league's current season is read again (that is how every finished game of a followed league lands,
+# whatever the free key's league calls give), a past season already complete (history.json) is skipped; with everything complete a night
+# costs one request a league. By hand: input `leagues` reruns only those (a failed one).
+# The key: the secret THESPORTSDB_KEY (the paid month: a whole season in one request, 5 seasons), else the free key 123 (3 seasons, round
+# by round). It is never printed: GitHub masks it in the logs and the tools take it out of every message they write.
+# Pace: max-parallel 3, each job 2.4 s between requests with the paid key (75 a minute together), 7 s with the free one (about 26).
+on:
+  workflow_dispatch:
+    inputs:
+      leagues:
+        description: 'TheSportsDB league ids, comma-separated (empty: every followed league, Saudi first)'
+        default: ''
+      seasons:
+        description: 'the last N seasons of each league, the current one included (0: 5 with the paid key, 3 with the free one)'
+        default: '0'
+  schedule:
+    - cron: '17 1 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: football-history
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683   # v4.2.2
+      - id: plan
+        run: echo "matrix=$(python3 .github/tools/match_archive.py plan --leagues "$LEAGUES")" >> "$GITHUB_OUTPUT"
+        env:
+          LEAGUES: ${{ inputs.leagues }}
+
+  league:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683   # v4.2.2
+      - name: The seasons already read (history.json)
+        run: tools/prev.sh football/archive data-archive "" prev
+      - name: TheSportsDB
+        env:
+          THESPORTSDB_KEY: ${{ secrets.THESPORTSDB_KEY }}
+          PACE: ${{ secrets.THESPORTSDB_KEY != '' && '2.4' || '7' }}
+          LEAGUE: ${{ matrix.league }}
+          SEASONS: ${{ inputs.seasons || '0' }}
+        run: |
+          out="history-$LEAGUE"
+          mkdir -p "$out"
+          cp prev/history.json "$out/state.json" 2>/dev/null || echo '{}' > "$out/state.json"
+          python3 -u .github/tools/match_archive.py history --leagues "$LEAGUE" --seasons "$SEASONS" --state "$out/state.json" \
+            --out "$out/games.json" --report "$out/report.json" --check
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4.6.2
+        with:
+          name: history-${{ matrix.league }}
+          path: history-${{ matrix.league }}
+          retention-days: 7
+
+  merge:
+    needs: [plan, league]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    concurrency:   # the one writer of football/archive at a time, with football.yml's archive job
+      group: football-archive-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683   # v4.2.2
+      - run: tools/inputs.sh assets/shared/teams.json android/app/src/main/java/sa/urtv/screensaver/Prefs.java
+      - name: The archive so far and the leagues' files
+        run: |
+          mkdir -p dl out
+          tools/prev.sh football/archive data-archive "" prev
+          tools/prev.sh football/leagues data-leagues leagues dl/leagues
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093   # v4.3.0
+        continue-on-error: true   # no league answered: the merge says so, nothing is lost
+        with:
+          pattern: history-*
+          path: parts
+      - name: Merge the leagues
+        env:
+          MATRIX: ${{ needs.plan.outputs.matrix }}
+        run: |
+          mkdir -p parts
+          expect=$(python3 -c "import json, os; print(','.join(json.loads(os.environ['MATRIX'])['league']))")
+          python3 .github/tools/match_archive.py merge-history --dir parts --state prev/history.json --expect "$expect" \
+            --out history-games.json --state-out history.json --report history-report.json
+      - name: Build
+        run: |
+          python3 -u .github/tools/match_archive.py build --leagues dl/leagues --prev prev --out out \
+            --history history-games.json --history-state history.json --history-report history-report.json
+      - name: The counts (in the run's summary)
+        if: always()
+        run: |
+          python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import json, os
+          st = json.load(open("history.json")) if os.path.exists("history.json") else {}
+          rp = json.load(open("history-report.json")) if os.path.exists("history-report.json") else {}
+          print("| league | season | games | finished | expected | complete |\n|---|---|---|---|---|---|")
+          for lg, seasons in st.items():
+              name = (rp.get(lg) or {}).get("name", lg)
+              for s, x in sorted(seasons.items()):
+                  e = x.get("expected")
+                  print(f"| {lg} {name} | {s} | {x.get('games')} | {x.get('finished')} | {e if e else '-'}{'' if x.get('expected_sure') or not e else ' (from its clubs)'} | {'yes' if x.get('complete') else ('current' if x.get('current') else 'no')} |")
+          h = json.load(open("out/health.json")) if os.path.exists("out/health.json") else {}
+          print("\nfailed leagues: " + (", ".join(rp.get("failed") or []) or "none"))
+          print("\nWikipedia check: " + json.dumps({k: {x: y for x, y in v.items() if x != "differences"} for r in (rp.get("check") or {}).values() for k, v in r.items()}, ensure_ascii=False))
+          print("\nhealth: " + json.dumps({k: h.get(k) for k in ("events", "teams", "pairs", "bytes", "problems")}, ensure_ascii=False))
+          PY
+      - name: Publish football/archive
+        run: |
+          test -f out/health.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 tools/publish.py --put out:football/archive -m "Match archive: history"
