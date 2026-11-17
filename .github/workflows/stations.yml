@@ -2,11 +2,13 @@ name: Stations
 
 # UrTV's stations-check.yml: each live Quran station of the launcher's list (android/launcher/src/main/assets/quran/stations.json of
 # tshi-dev/UrTV at APP_REF) probed with ffprobe and 30 s of audio read with ffmpeg; the table and the candidates' report (stations/).
-# UrTV ran it when the list changed; here, weekly (Mondays 05:17, a push to UrTV cannot start a workflow of this repository) and by hand.
+# UrTV ran it when the list changed; here, daily (05:17, a push to UrTV cannot start a workflow of this repository) and by hand.
+# UrTV 4.4: stations/status.json too: each station's failed checks in a row (from the last published status.json); three in a row = dead, and
+# the home app hides it. The extra mirrors of UrTV's .github/tools/station_mirrors.json are checked and the ones that play are published.
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 5 * * 1'
+    - cron: '17 5 * * *'
 
 permissions:
   contents: write
@@ -20,8 +22,8 @@ concurrency:
 
 jobs:
   stations:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40   # a down station is tried at each of its sources
     env:
       CANDIDATES: >-
         https://stream.radiojar.com/0tpy1h0kxtzuv
@@ -32,11 +34,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: tools/inputs.sh android/launcher/src/main/assets/quran/stations.json
+      - run: tools/inputs.sh .github/tools/station_mirrors.json || true   # UrTV 4.4 (none before it): no extra mirrors
+      - name: The last published status (failed checks in a row)
+        run: git fetch -q --depth=1 origin data && git show FETCH_HEAD:stations/status.json > "$RUNNER_TEMP/prev-status.json" || true
       - run: python3 -u .github/tools/find_streams.py || true
       - run: sudo timeout 600 apt-get update -qq && sudo timeout 600 apt-get install -y -qq ffmpeg
         timeout-minutes: 12
       - run: python3 -u .github/tools/aloula_probe.py || true
       - run: python3 -u .github/tools/check_stations.py $CANDIDATES
+        env:
+          STATIONS_PREV: ${{ runner.temp }}/prev-status.json
       - name: Publish stations
         if: always()
         run: |
