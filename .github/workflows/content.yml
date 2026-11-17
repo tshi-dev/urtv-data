@@ -1,6 +1,6 @@
 name: Content
 
-# The hand-edited files of content/ (notices, per-model defaults, seasonal packs, prayer corrections), checked (tools/check_content.py, fails
+# The hand-edited files of content/ (notices, per-model defaults, seasonal packs, prayer corrections, school breaks), checked (tools/check_content.py, fails
 # closed: the data branch keeps its last good files) and published when they change on main, or by hand.
 on:
   workflow_dispatch:
@@ -26,9 +26,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p pub/notices pub/devices pub/seasonal pub/prayer
+          mkdir -p pub/notices pub/devices pub/seasonal pub/prayer pub/calendar
           cp content/announcements.json pub/notices/
           cp content/devices.json pub/devices/
           cp content/seasonal.json pub/seasonal/
           cp content/prayer-adjustments.json pub/prayer/adjustments.json
-          python3 tools/publish.py --put pub/notices:notices --put pub/devices:devices --put pub/seasonal:seasonal --put pub/prayer:prayer -m "Content"
+          cp content/sa-school.json pub/calendar/
+          python3 tools/publish.py --put pub/notices:notices --put pub/devices:devices --put pub/seasonal:seasonal --put pub/prayer:prayer --put pub/calendar:calendar -m "Content"

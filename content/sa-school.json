@@ -1,0 +1,39 @@
+{
+  "v": 1,
+  "source": "https://ajel.sa/guide/school-calendar",
+  "sources": [
+    "https://ajel.sa/guide/school-calendar",
+    "https://ajel.sa/guide/school-calendar/eid-holidays",
+    "https://sabq.org/services/school-calendar-date",
+    "https://www.okaz.com.sa/local/na/2256793"
+  ],
+  "note": "National breaks of the 1448 school year, from the Ministry of Education calendar as reported by Saudi news sites; each date seen in two or more sources. Eid dates may move by a day with the moon sighting. Regional extra days are not included.",
+  "updated": "2026-11-17",
+  "breaks": [
+    {
+      "name": "إجازة الخريف",
+      "from": "2026-11-20",
+      "to": "2026-11-28"
+    },
+    {
+      "name": "إجازة منتصف العام الدراسي",
+      "from": "2027-01-08",
+      "to": "2027-01-16"
+    },
+    {
+      "name": "إجازة يوم التأسيس",
+      "from": "2027-02-19",
+      "to": "2027-02-22"
+    },
+    {
+      "name": "إجازة عيد الفطر",
+      "from": "2027-02-26",
+      "to": "2027-03-13"
+    },
+    {
+      "name": "إجازة عيد الأضحى",
+      "from": "2027-05-07",
+      "to": "2027-05-22"
+    }
+  ]
+}

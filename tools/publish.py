@@ -39,6 +39,7 @@ DATASETS = {
     "devices/": {"v": 1, "cdn": True, "about": "per-model defaults and fixes (content/devices.json)"},
     "seasonal/": {"v": 1, "cdn": True, "about": "seasonal photo packs with their dates (content/seasonal.json)"},
     "prayer/": {"v": 1, "cdn": True, "about": "per-country and per-city prayer time corrections by date (content/prayer-adjustments.json)"},
+    "calendar/": {"v": 1, "cdn": True, "about": "the Saudi school breaks for the countdown (content/sa-school.json)"},
     "status/": {"v": 1, "cdn": False, "about": "each dataset's last update and its writer's last good run (tools/status.py)"},
 }
 

@@ -131,7 +131,26 @@ def prayer(d):
             bad(w, "source: who announced it")
 
 
-CHECKS = {"announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer}
+def school(d):
+    if not (isinstance(d.get("source"), str) and HTTPS.fullmatch(d["source"])):
+        bad("sa-school.source", "an https link to where the dates come from")
+    rows = d.get("breaks")
+    if not isinstance(rows, list) or not rows:
+        bad("sa-school.breaks", "a list of {name, from, to}")
+        return
+    last = None
+    for i, b in enumerate(rows):
+        w = f"sa-school.breaks[{i}]"
+        if not (isinstance(b.get("name"), str) and ARABIC.search(b["name"])):
+            bad(w, "name: the break's Arabic name")
+        span(w, b)
+        a = day(w + ".from", b.get("from"))
+        if a and last and a < last:
+            bad(w, "breaks must be in date order")
+        last = a or last
+
+
+CHECKS = {"announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school}
 
 
 def main():
