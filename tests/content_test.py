@@ -37,8 +37,21 @@ good = {
                                           "license": {"name": "Unsplash License"}}]},
     "prayer-adjustments.json": {"v": 1, "adjustments": [{"id": "sa-isha-ramadan", "where": {"country": "SA"}, "from": "2027-02-08", "to": "2027-03-09",
                                                           "minutes": {"isha": 5}, "source": "Umm al-Qura calendar"}]},
+    "sa-school.json": {"v": 1, "source": "https://ajel.sa/guide/school-calendar",
+                       "breaks": [{"name": "إجازة الخريف", "from": "2026-11-20", "to": "2026-11-28"},
+                                  {"name": "إجازة منتصف العام الدراسي", "from": "2027-01-08", "to": "2027-01-16"}]},
 }
 check("a full example passes", run(good).returncode == 0, run(good).stdout)
+for what, change, want in [
+    ("school: a break that ends first", lambda d: d["sa-school.json"]["breaks"][0].update({"to": "2026-11-01"}), "ends before it starts"),
+    ("school: breaks out of order", lambda d: d["sa-school.json"]["breaks"].reverse(), "date order"),
+    ("school: no Arabic name", lambda d: d["sa-school.json"]["breaks"][0].update({"name": "Autumn"}), "Arabic name"),
+    ("school: no source link", lambda d: d["sa-school.json"].update({"source": "ajel"}), "https link"),
+]:
+    d = copy.deepcopy(good)
+    change(d)
+    r = run(d)
+    check("caught: " + what, r.returncode == 1 and want in r.stdout, r.stdout)
 
 
 def broken(name, path, value, want):
