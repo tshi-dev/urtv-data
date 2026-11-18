@@ -87,6 +87,11 @@ broken("games-release.json", ["codes"], ["K7QF-2M9X"], "a record")
 broken("games-release.json", ["games"], [], "object of game ids")
 broken("games-release.json", ["v"], 2, '"v": 1')
 broken("games-release.json", ["games", "test-1"], {"a": "now", "b": "now"}, "no definition")
+# a game of the app's own list: on with no definition is fine, and a definition under its id is not
+d = copy.deepcopy(good); d["games-release.json"]["games"]["maths"] = {"a": False, "b": "now"}
+check("a held game of the app's own list can be switched on with no definition", run(d).returncode == 0, run(d).stdout)
+d = copy.deepcopy(good); d["games-release.json"]["games"]["maths"] = {"a": "now"}; d["games-release.json"]["defs"] = {"maths": {}}
+r = run(d); check("caught: a definition under the id of a game of the app's own list", r.returncode == 1 and "the app already has it" in r.stdout, r.stdout)
 d = copy.deepcopy(good)
 d["devices.json"]["devices"].append(copy.deepcopy(d["devices.json"]["devices"][0]))
 check("caught: an id twice", "id twice" in run(d).stdout)

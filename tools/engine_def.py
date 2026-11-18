@@ -16,6 +16,9 @@ SCORES = ["first", "all", "closest", "speed", "bank"]
 ICONS = ["star", "heart", "circle", "square", "triangle", "diamond", "question", "check", "clock", "bulb", "flag", "drop"]
 ACCENTS = ["saff", "ok", "pink", "deep", "ink"] + [f"side{i}" for i in range(10)]
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,39}")
+
+# the games of the app's own list that the app holds back (GameRegistry.HELD in UrTV): the file switches them on or off by id and they need no definition
+HELD = ("forehead", "author", "closest", "liar", "emoji", "link", "night", "draw", "quran-verse", "maths", "logic")
 ARABIC = re.compile("[ء-يٱ]")
 DIGIT = re.compile("[0-9٠-٩۰-۹]")
 LATIN_WORD = re.compile(r"[A-Za-z][A-Za-z ]*")

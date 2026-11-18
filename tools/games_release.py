@@ -209,7 +209,7 @@ def cmd_remove(a):
 def cmd_on(a):
     if not ID.fullmatch(a.id): sys.exit("not an id")
     d = load()
-    if a.id not in d["defs"] and a.id not in d["bdefs"]: sys.exit(f"{a.id} has no definition: «add» or «seal» it first")
+    if a.id not in d["defs"] and a.id not in d["bdefs"] and a.id not in engine_def.HELD: sys.exit(f"{a.id} has no definition: «add» or «seal» it first")
     if a.a is None and a.b is None: sys.exit("give --a and/or --b (a time, now or off)")
     g = d["games"].setdefault(a.id, {"a": False, "b": False})
     if a.a is not None: g["a"] = when(a.a)
@@ -233,8 +233,8 @@ def cmd_check(a):
     print("at", at.strftime("%Y-%m-%dT%H:%M:%SZ"), "(group B also has a game from its a time)")
     for g, v in d["games"].items():
         ea, eb = is_on(v.get("a"), at), is_on(v.get("b"), at)
-        has = g in d["defs"] or g in d["bdefs"]
-        print(f"  {g:24s} A {'on ' if ea and g in d['defs'] else 'off'}  B {'on ' if (ea or eb) and has else 'off'}  {'' if has else '(no definition: not on)'}")
+        has = g in d["defs"] or g in d["bdefs"] or g in engine_def.HELD
+        print(f"  {g:24s} A {'on ' if ea and (g in d['defs'] or g in engine_def.HELD) else 'off'}  B {'on ' if (ea or eb) and has else 'off'}  {'' if has else '(no definition: not on)'}")
 
 
 def cmd_rekey(a):

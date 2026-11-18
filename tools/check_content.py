@@ -164,6 +164,9 @@ def games_release(d):
         games = {}
     if len(json.dumps(d, ensure_ascii=False).encode("utf-8")) > 60000:
         bad("games-release", "over 60000 bytes: the app reads 64 KB at most (a bigger game is a pack)")
+    for g in list(d.get("defs") or {}) + list(d.get("bdefs") or {}):
+        if g in engine_def.HELD:
+            bad(f"games-release.defs.{g}", "the id of a game of the app's own list: the app already has it (pick another id)")
     for g, v in games.items():
         w = f"games-release.games.{g}"
         if not engine_def.ID.fullmatch(g):
@@ -206,7 +209,7 @@ def games_release(d):
             bad(w, "a sealed value: hex of iv + ciphertext + tag (tools/games_release.py seal)")
     for g, v in games.items():
         if isinstance(v, dict) and any(v.get(k) not in (False, None) for k in ("a", "b")):
-            if g not in defs and g not in bdefs:
+            if g not in defs and g not in bdefs and g not in engine_def.HELD:
                 bad(f"games-release.games.{g}", "switched on with no definition: it would stay hidden")
             if v.get("a") not in (False, None) and g not in defs:
                 bad(f"games-release.games.{g}", "on for everyone but its definition is sealed for group B only")

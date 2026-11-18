@@ -75,6 +75,7 @@ adjustment of that prayer, and the times screen says that a published correction
 `{v, games: {<id>: {a, b}}, defs: {<id>: {game}}, bdefs: {<id>: "<sealed hex>"}, codes: ["2:<rounds>:<salt hex>:<check hex>:<wrapped key hex>"]}`: UrTV's remote release of the games that the engine plays from data (UrTV `docs/GAMES-RELEASE.md`, `docs/GAME-ENGINE.md`).
 `a` is when a game is on for everyone, `b` when it is on for group B (the owner's pass); each is `"now"`, a UTC time `"YYYY-MM-DDTHH:MM:SSZ"` or `false` (off; so is a missing key or game). `defs` are the games' definitions (checked by `tools/engine_def.py`, the same rules as the
 app's `GameDef`; a game that fails is not published), `bdefs` the ones sealed (AES-256-GCM) with the group key for group B only, `codes` the records of the 6-sign pass codes (at most 30; PBKDF2-HMAC-SHA256, 100000 to 1000000 rounds, a random salt each; the codes themselves are never stored, and each record wraps the group key under its code). 60000 bytes at most.
+The ids in `tools/engine_def.py` `HELD` are games of the app's own list that the app holds back: `games` switches them on or off by id (`a`, `b`, as above), they need no definition, and a definition under such an id is refused.
 The app reads it like the other hand-edited files, so a missing or broken file means nothing is on. Edit it with `tools/games_release.py`. CDN off: a switch must reach the TVs in minutes.
 
 ## status/status.json (v 1)
