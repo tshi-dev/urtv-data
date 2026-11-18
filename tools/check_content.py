@@ -151,7 +151,7 @@ def school(d):
 
 
 UTC_STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
-RELEASE_RECORD = re.compile(r"1:(\d{4,6}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{120})")
+RELEASE_RECORD = re.compile(r"2:(\d{6,7}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{120})")
 
 
 def games_release(d):
@@ -211,13 +211,13 @@ def games_release(d):
             if v.get("a") not in (False, None) and g not in defs:
                 bad(f"games-release.games.{g}", "on for everyone but its definition is sealed for group B only")
     codes = d.get("codes", [])
-    if not isinstance(codes, list) or len(codes) > 200:
-        bad("games-release.codes", "a list of at most 200 records")
+    if not isinstance(codes, list) or len(codes) > 30:
+        bad("games-release.codes", "a list of at most 30 records (a TV pays the slow part once for each)")
         return
     for i, c in enumerate(codes):
         m = RELEASE_RECORD.fullmatch(c) if isinstance(c, str) else None
-        if not m or not 1000 <= int(m.group(1)) <= 100000:
-            bad(f"games-release.codes[{i}]", "a record 1:rounds(1000..100000):salt(hex, 8 bytes at least):check(64 hex):wrapped key(120 hex): make it with tools/games_release.py code")
+        if not m or not 100000 <= int(m.group(1)) <= 1000000:
+            bad(f"games-release.codes[{i}]", "a record 2:rounds(100000..1000000):salt(hex, 8 bytes at least):check(64 hex):wrapped key(120 hex): make it with tools/games_release.py code")
     if len(set(codes)) != len(codes):
         bad("games-release.codes", "a record twice")
 

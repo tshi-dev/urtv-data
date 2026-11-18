@@ -50,12 +50,12 @@ with tempfile.TemporaryDirectory() as t:
     check("«key» makes the group key in the key file (mode 600), prints no key, and a second run keeps it", r.returncode == 0 and kf.is_file() and oct(kf.stat().st_mode & 0o777) == "0o600" and len(bytes.fromhex(kf.read_text().strip())) == 32 and kf.read_text().strip() not in r.stdout and "already" in tool("key").stdout)
     key = bytes.fromhex(kf.read_text().strip())
     r = tool("code")
-    m = re.search(r"CODE \(shown once, never stored\):\s+([A-Z2-9]{4}(?:-[A-Z2-9]{4}){3})", r.stdout); rec = re.search(r"record: (\S+)", r.stdout)
-    check("«code» makes a 16-character random code in groups of four, prints it once with its record, writes nothing", r.returncode == 0 and m and rec and data()["codes"] == [] and gr.RECORD.fullmatch(rec.group(1)), r.stdout + r.stderr)
+    m = re.search(r"CODE \(shown once, never stored\):\s+([A-HJ-KM-NP-Z2-9]{6})\b", r.stdout); rec = re.search(r"record: (\S+)", r.stdout)
+    check("«code» makes a random 6-sign code (A to Z without I, L, O, and 2 to 9), prints it once with its record, writes nothing", r.returncode == 0 and m and rec and data()["codes"] == [] and gr.RECORD.fullmatch(rec.group(1)), r.stdout + r.stderr)
     code = m.group(1)
-    check("the record opens with its code (in any spelling) to the group key, and not with another code", gr.group_key_of(code, rec.group(1)) == key and gr.group_key_of(code.lower().replace("-", " "), rec.group(1)) == key and gr.group_key_of(code[:-1] + ("A" if code[-1] != "A" else "B"), rec.group(1)) is None and gr.group_key_of("SHORT", rec.group(1)) is None)
+    check("the record opens with its code (in any spelling) to the group key, and not with another code", gr.group_key_of(code, rec.group(1)) == key and gr.group_key_of(code.lower(), rec.group(1)) == key and gr.group_key_of(code[:3] + " " + code[3:], rec.group(1)) == key and gr.group_key_of(code[:-1] + ("A" if code[-1] != "A" else "B"), rec.group(1)) is None and gr.group_key_of("SHORT", rec.group(1)) is None)
     r2 = tool("code", "--add"); c2 = re.search(r"CODE \(shown once, never stored\):\s+(\S+)", r2.stdout).group(1)
-    check("--add puts only the record in the file: neither code is anywhere in it, the group key is not either; the file passes the check", len(data()["codes"]) == 1 and c2 not in f.read_text() and c2.replace("-", "") not in f.read_text() and key.hex() not in f.read_text() and valid()[0])
+    check("--add puts only the record in the file: neither code is anywhere in it, the group key is not either; the file passes the check", len(data()["codes"]) == 1 and c2 not in f.read_text() and key.hex() not in f.read_text() and valid()[0])
     check("«on» for a game with no definition is refused", tool("on", "test-1", "--a", "now").returncode != 0 and data()["games"] == {})
     ex = ROOT / "tests/engine-examples/test-1.json"; ex2 = ROOT / "tests/engine-examples/test-2.json"
     bad = t / "bad.json"; bad.write_text(json.dumps({"v": 1, "id": "test-9", "name": "اختبار", "line": "خطأ", "items": [{"t": "spin"}]}, ensure_ascii=False))
@@ -82,6 +82,14 @@ with tempfile.TemporaryDirectory() as t:
     check("check: a game both open and sealed", broken(lambda d: d["bdefs"].__setitem__("test-1", d["bdefs"]["test-2"]), "both open and sealed"))
     check("check: a bad record, a record twice, a number as a record", broken(lambda d: d["codes"].append("1:2000:zz:bad:x"), "codes[") and broken(lambda d: d["codes"].append(d["codes"][0]), "a record twice") and broken(lambda d: d["codes"].append(42), "codes["))
     check("check: a sealed value that is not hex, a sealed game the file does not list, a time that is not a UTC stamp, a game named with capitals", broken(lambda d: d["bdefs"].__setitem__("test-2", "not hex"), "sealed value") and broken(lambda d: d["bdefs"].__setitem__("zzz-9", d["bdefs"]["test-2"]), "does not list") and broken(lambda d: d["games"]["test-1"].__setitem__("a", "2026-12-01"), "UTC time") and broken(lambda d: d["games"].__setitem__("Bad Id", {"a": False}), "an id"))
+    check("a code is exactly 6 signs of the alphabet: 5 or 7 signs, an I, an L, an O, a 0 or a 1 never open a record (even one made for them), and the record's rounds are 100000 to 1000000",
+          gr.group_key_of(code[:5], rec.group(1)) is None and gr.group_key_of(code + "A", rec.group(1)) is None and all(gr.group_key_of(code[:5] + c, rec.group(1)) is None for c in "ILO01") and not gr.valid_code("ABCDE0") and not gr.valid_code("ABCDEI") and gr.valid_code("ABCD23")
+          and tool("code", "--rounds", "99999").returncode != 0 and tool("code", "--rounds", "1000001").returncode != 0 and re.fullmatch(r"2:300000:.*", rec.group(1)) is not None)
+    ra = tool("code", "--rounds", "100000"); recb = re.search(r"record: (\S+)", ra.stdout).group(1)
+    check("--rounds sets the cost (100000 here, 300000 by default); a record is 2:rounds:salt:check:wrapped with a salt of its own each time", recb.startswith("2:100000:") and gr.group_key_of(re.search(r"CODE \(shown once, never stored\):\s+(\S+)", ra.stdout).group(1), recb) == key and recb.split(":")[2] != rec.group(1).split(":")[2])
+    ask = tool("code", "--ask", inp="XYZ234\nXYZ234\n"); rk_ask = re.search(r"record: (\S+)", ask.stdout)
+    check("«code --ask» takes a typed code (hidden) twice, prints only the record, never the code; a code of the wrong length, with an O, or typed twice differently is refused",
+          ask.returncode == 0 and rk_ask and "XYZ234" not in ask.stdout and gr.group_key_of("xyz-234", rk_ask.group(1)) == key and tool("code", "--ask", inp="XYZ23\nXYZ23\n").returncode != 0 and tool("code", "--ask", inp="XYZ23O\nXYZ23O\n").returncode != 0 and tool("code", "--ask", inp="XYZ234\nXYZ235\n").returncode != 0)
     # revoke and rekey
     first = data()["codes"][0].split(":")[3][:8]
     check("«list» shows shortened hashes only, never a record or a code", first in tool("list").stdout and data()["codes"][0] not in tool("list").stdout and code not in tool("list").stdout and key.hex() not in tool("list").stdout)
@@ -99,6 +107,12 @@ with tempfile.TemporaryDirectory() as t:
     for i in range(3):
         g2 = dict(g, id=f"test-{i + 6}"); big.write_text(json.dumps(g2, ensure_ascii=False)); r = tool("add", str(big))
     check("a file over 60000 bytes is refused by the tool before it is written (the app reads 64 KB at most)", r.returncode != 0 and "60000" in (r.stdout + r.stderr) and len(f.read_bytes()) <= 60000, r.stdout + r.stderr)
+    d = data(); keepcodes = list(d["codes"]); d["codes"] = [f"2:100000:{i:032x}:{'ab' * 32}:{'cd' * 60}" for i in range(30)]
+    f.write_text(json.dumps(d, ensure_ascii=False))
+    check("30 records at most: «code --add» refuses the 31st (every TV pays the slow part once per record), and the check refuses a file with 31", tool("code", "--add").returncode != 0 and len(data()["codes"]) == 30 and valid()[0])
+    d["codes"].append(f"2:100000:{31:032x}:{'ab' * 32}:{'cd' * 60}"); f.write_text(json.dumps(d, ensure_ascii=False)); ok31, out31 = valid()
+    check("…and a file with 31 records fails the check", not ok31 and "30 records" in out31, out31)
+    d["codes"] = keepcodes; f.write_text(json.dumps(d, ensure_ascii=False))
     check("nothing the tool wrote holds a code, the group key or a key file path", set(data()) <= {"v", "games", "defs", "bdefs", "codes"} and newkey.hex() not in f.read_text() and key.hex() not in f.read_text() and ckeep not in f.read_text())
 
 print(f"\n{len(fails)} failed" if fails else "\nall passed")

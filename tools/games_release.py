@@ -10,8 +10,9 @@
     check [--at TIME]                what is on for each group at a time (now by default)
   The pass (group B)
     key                              makes the group key (32 random bytes) in the key file if there is none; never printed
-    code [--add] [--ask]             a pass code (12 characters or more): a long random one is made and shown ONCE (never stored), or with --ask one you type (hidden);
-                                     prints the record for «codes» (--add pastes it); the record holds the code's check hash and the group key wrapped by the code
+    code [--add] [--ask] [--rounds N]   a pass code of exactly 6 signs (A to Z without I, L, O, and 2 to 9): made at random and shown ONCE (never stored), or with --ask one you type (hidden);
+                                     prints the record for «codes» (--add pastes it); the record holds a check and the group key wrapped by the code, behind N rounds of PBKDF2
+                                     (default 300000, 100000 to 1000000; a TV pays them once per record). 30 records at most. A 6-sign code is weak against guessing from the public file: the rounds are what slow it
     revoke HASH                      removes the record whose check hash starts with HASH (see «list»); to make a revoked TV's key useless for later files run «rekey»
     list                             the records, shortened, and what is in the file
     rekey --keep                     a NEW group key: asks (hidden) for the codes that stay, one at a time, writes their records again and seals every game again
@@ -35,8 +36,10 @@ import engine_def  # noqa: E402
 FILE = Path(os.environ.get("URTV_GAMES_RELEASE_FILE") or Path(__file__).resolve().parent.parent / "content" / "games-release.json")
 WHEN = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,39}")
-ROUNDS, SALT_BYTES, ALPHABET, CODE_MIN, KEY_BYTES, IV_BYTES = 20000, 16, "ABCDEFGHJKMNPQRSTUVWXYZ23456789", 12, 32, 12
-RECORD = re.compile(r"1:(\d{4,6}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{%d})" % ((IV_BYTES + KEY_BYTES + 16) * 2))
+ROUNDS, ROUNDS_MIN, ROUNDS_MAX, SALT_BYTES, CODE_LEN, KEY_BYTES, IV_BYTES = 300_000, 100_000, 1_000_000, 16, 6, 32, 12
+ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"   # A to Z without I, L and O, and the digits 2 to 9: 31 signs, nothing that can be read as another
+CODES_MAX = 30
+RECORD = re.compile(r"2:(\d{6,7}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{%d})" % ((IV_BYTES + KEY_BYTES + 16) * 2))
 FILE_MAX = 60_000   # the app reads 64 KB at most
 
 
@@ -51,9 +54,16 @@ def normalize(code):
     return "".join(out)
 
 
+def valid_code(n):
+    """exactly CODE_LEN signs of the alphabet (the code is already normalised)"""
+    return len(n) == CODE_LEN and all(c in ALPHABET for c in n)
+
+
 def derive(code, salt, rounds, purpose):
-    """PBKDF2-HMAC-SHA256 of the normalised code with the salt and the purpose («check» or «wrap») added: UrTV's GameCrypt.derive"""
-    return hashlib.pbkdf2_hmac("sha256", normalize(code).encode("utf-8"), salt + purpose.encode(), rounds, KEY_BYTES)
+    """the slow part once, PBKDF2-HMAC-SHA256 of the normalised code with the record's own random salt, then a name by HMAC («check» or «wrap»): UrTV's GameCrypt.derive"""
+    import hmac
+    master = hashlib.pbkdf2_hmac("sha256", normalize(code).encode("utf-8"), salt, rounds, KEY_BYTES)
+    return hmac.new(master, purpose.encode(), hashlib.sha256).digest()
 
 
 def aesgcm():
@@ -80,13 +90,13 @@ def open_sealed(key, sealed_hex):
 
 def record(code, group_key, salt=None, rounds=ROUNDS, iv=None):
     salt = salt if salt is not None else secrets.token_bytes(SALT_BYTES)
-    return f"1:{rounds}:{salt.hex()}:{derive(code, salt, rounds, 'check').hex()}:{seal(derive(code, salt, rounds, 'wrap'), group_key, iv)}"
+    return f"2:{rounds}:{salt.hex()}:{derive(code, salt, rounds, 'check').hex()}:{seal(derive(code, salt, rounds, 'wrap'), group_key, iv)}"
 
 
 def group_key_of(code, rec):
     """the group key a code opens in a record, or None: what the app does"""
     m = RECORD.fullmatch(rec)
-    if not m or len(normalize(code)) < CODE_MIN:
+    if not m or not valid_code(normalize(code)) or not ROUNDS_MIN <= int(m.group(1)) <= ROUNDS_MAX:
         return None
     salt = bytes.fromhex(m.group(2))
     if derive(code, salt, int(m.group(1)), "check").hex() != m.group(3):
@@ -150,14 +160,16 @@ def cmd_key(a):
 
 def cmd_code(a):
     d = load(); k = read_key(a)
+    if not ROUNDS_MIN <= a.rounds <= ROUNDS_MAX: sys.exit(f"--rounds: {ROUNDS_MIN} to {ROUNDS_MAX}")
+    if a.add and len(d["codes"]) >= CODES_MAX: sys.exit(f"{CODES_MAX} records at most (every TV that enters a code pays the slow part once for each record)")
     if a.ask:
-        code = getpass.getpass(f"code (hidden, {CODE_MIN} letters or digits at least): ")
+        code = getpass.getpass(f"code (hidden, exactly {CODE_LEN} signs of {ALPHABET}): ")
         if getpass.getpass("again: ") != code: sys.exit("the two do not match; nothing done")
-        if len(normalize(code)) < CODE_MIN: sys.exit(f"too short: at least {CODE_MIN} letters or digits (the file is public: a long random code is the only safe one)")
+        if not valid_code(normalize(code)): sys.exit(f"a code is exactly {CODE_LEN} signs of {ALPHABET}")
         shown = None
     else:
-        raw = "".join(secrets.choice(ALPHABET) for _ in range(16)); code = raw; shown = "-".join(raw[i:i + 4] for i in range(0, 16, 4))
-    rec = record(code, k)
+        code = "".join(secrets.choice(ALPHABET) for _ in range(CODE_LEN)); shown = code
+    rec = record(code, k, rounds=a.rounds)
     if a.add: d["codes"].append(rec); save(d); print("added to content/games-release.json (commit it to publish)")
     if shown: print(f"CODE (shown once, never stored):  {shown}")
     print("record:", rec)
@@ -233,14 +245,14 @@ def cmd_rekey(a):
     while True:
         c = getpass.getpass("code: ")
         if not c: break
-        if len(normalize(c)) < CODE_MIN: print("too short, skipped"); continue
+        if not valid_code(normalize(c)): print(f"not a code ({CODE_LEN} signs of the alphabet), skipped"); continue
         if not any(group_key_of(c, r) == old for r in d["codes"]): print("that code is not in the file: skipped"); continue
         codes.append(c)
     if not codes: sys.exit("no code to keep: nothing changed")
     new = secrets.token_bytes(KEY_BYTES)
     plain = {g: open_sealed(old, s) for g, s in d["bdefs"].items()}
     if any(p is None for p in plain.values()): sys.exit("a sealed game does not open with the current key: nothing changed")
-    d["codes"] = [record(c, new) for c in codes]; d["bdefs"] = {g: seal(new, p) for g, p in plain.items()}
+    d["codes"] = [record(c, new, rounds=a.rounds) for c in codes]; d["bdefs"] = {g: seal(new, p) for g, p in plain.items()}
     f = key_file(a); tmp = f.with_suffix(".new")
     fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     with os.fdopen(fd, "w") as h: h.write(new.hex() + "\n")
@@ -253,7 +265,7 @@ def main():
     ap.add_argument("--key-file")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("key").set_defaults(f=cmd_key)
-    c = sub.add_parser("code"); c.add_argument("--add", action="store_true"); c.add_argument("--ask", action="store_true"); c.set_defaults(f=cmd_code)
+    c = sub.add_parser("code"); c.add_argument("--add", action="store_true"); c.add_argument("--ask", action="store_true"); c.add_argument("--rounds", type=int, default=ROUNDS); c.set_defaults(f=cmd_code)
     sub.add_parser("list").set_defaults(f=cmd_list)
     r = sub.add_parser("revoke"); r.add_argument("hash"); r.set_defaults(f=cmd_revoke)
     x = sub.add_parser("add"); x.add_argument("file"); x.set_defaults(f=cmd_add)
@@ -262,7 +274,7 @@ def main():
     o = sub.add_parser("on"); o.add_argument("id"); o.add_argument("--a"); o.add_argument("--b"); o.set_defaults(f=cmd_on)
     f = sub.add_parser("off"); f.add_argument("id"); f.set_defaults(f=cmd_off)
     k = sub.add_parser("check"); k.add_argument("--at"); k.set_defaults(f=cmd_check)
-    rk = sub.add_parser("rekey"); rk.add_argument("--keep", action="store_true"); rk.set_defaults(f=cmd_rekey)
+    rk = sub.add_parser("rekey"); rk.add_argument("--keep", action="store_true"); rk.add_argument("--rounds", type=int, default=ROUNDS); rk.set_defaults(f=cmd_rekey)
     a = ap.parse_args(); a.f(a)
 
 
