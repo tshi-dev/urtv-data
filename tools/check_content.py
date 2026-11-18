@@ -171,10 +171,21 @@ def games_release(d):
         w = f"games-release.games.{g}"
         if not engine_def.ID.fullmatch(g):
             bad(w, "an id: lower-case letters, digits and dashes, 2 to 40")
-        if not isinstance(v, dict) or not set(v) <= {"a", "b"}:
-            bad(w, "an object with a and/or b only")
+        if not isinstance(v, dict) or not set(v) <= {"a", "b", "native"}:
+            bad(w, "an object with a and/or b (and \"native\": true for a game of the app's own list) only")
             continue
+        if "native" in v:
+            if v["native"] is not True:
+                bad(w, "\"native\" is true or absent")
+            elif g not in engine_def.HELD:
+                bad(w, "\"native\" for an id the app does not hold back (the list is tools/engine_def.py HELD)")
+            elif g in (d.get("defs") if isinstance(d.get("defs"), dict) else {}) or g in (d.get("bdefs") if isinstance(d.get("bdefs"), dict) else {}):
+                bad(w, "\"native\" and a definition together: a native game has none")
+        elif g in engine_def.HELD:
+            bad(w, "an id of the app's own list needs \"native\": true (without it the app ignores the entry)")
         for k, t in v.items():
+            if k == "native":
+                continue
             if t is False or t == "now":
                 continue
             if not (isinstance(t, str) and UTC_STAMP.fullmatch(t)):
@@ -209,7 +220,7 @@ def games_release(d):
             bad(w, "a sealed value: hex of iv + ciphertext + tag (tools/games_release.py seal)")
     for g, v in games.items():
         if isinstance(v, dict) and any(v.get(k) not in (False, None) for k in ("a", "b")):
-            if g not in defs and g not in bdefs and g not in engine_def.HELD:
+            if g not in defs and g not in bdefs and v.get("native") is not True:
                 bad(f"games-release.games.{g}", "switched on with no definition: it would stay hidden")
             if v.get("a") not in (False, None) and g not in defs:
                 bad(f"games-release.games.{g}", "on for everyone but its definition is sealed for group B only")

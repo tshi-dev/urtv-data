@@ -56,8 +56,10 @@ with tempfile.TemporaryDirectory() as t:
     check("the record opens with its code (in any spelling) to the group key, and not with another code", gr.group_key_of(code, rec.group(1)) == key and gr.group_key_of(code.lower(), rec.group(1)) == key and gr.group_key_of(code[:3] + " " + code[3:], rec.group(1)) == key and gr.group_key_of(code[:-1] + ("A" if code[-1] != "A" else "B"), rec.group(1)) is None and gr.group_key_of("SHORT", rec.group(1)) is None)
     r2 = tool("code", "--add"); c2 = re.search(r"CODE \(shown once, never stored\):\s+(\S+)", r2.stdout).group(1)
     check("--add puts only the record in the file: neither code is anywhere in it, the group key is not either; the file passes the check", len(data()["codes"]) == 1 and c2 not in f.read_text() and key.hex() not in f.read_text() and valid()[0])
-    check("«on» for a game of the app's own list needs no definition (the app holds it back); «check» says it is on; «off» turns it off", tool("on", "maths", "--b", "now").returncode == 0 and data()["games"]["maths"]["b"] == "now"
-          and "maths" in tool("check").stdout and tool("off", "maths").returncode == 0 and data()["games"]["maths"] == {"a": False, "b": False})
+    check("«on --native» for a game of the app's own list needs no definition and writes {native: true, a, b}; «check» says it is on; «off» turns it off and keeps native",
+          tool("on", "maths", "--native", "--b", "now").returncode == 0 and data()["games"]["maths"] == {"a": False, "b": "now", "native": True}
+          and "maths" in tool("check").stdout and tool("off", "maths").returncode == 0 and data()["games"]["maths"] == {"a": False, "b": False, "native": True})
+    check("«on» for such a game without --native, and --native for another id, are refused", tool("on", "maths", "--b", "now").returncode != 0 and tool("on", "test-1", "--native", "--a", "now").returncode != 0)
     tool("remove", "maths")
     check("«on» for a game with no definition is refused", tool("on", "test-1", "--a", "now").returncode != 0 and data()["games"] == {})
     ex = ROOT / "tests/engine-examples/test-1.json"; ex2 = ROOT / "tests/engine-examples/test-2.json"

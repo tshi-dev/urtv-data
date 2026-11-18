@@ -2,7 +2,7 @@
 """The owner's tool for UrTV's remote games release (UrTV docs/GAMES-RELEASE.md): edits content/games-release.json, which content.yml checks and publishes as release/games.json.
 
   Games
-    on ID [--a WHEN] [--b WHEN]      WHEN is now, a UTC time 2026-12-01T00:00:00Z, or off; a = everyone, b = group B; the game must have a definition (add GAME.json) or a sealed one
+    on ID [--a WHEN] [--b WHEN] [--native]   --native: a game of the app's own list (no definition); WHEN is now, a UTC time 2026-12-01T00:00:00Z, or off; a = everyone, b = group B; the game must have a definition (add GAME.json) or a sealed one
     off ID                           off for both groups
     add GAME.json                    puts the game's definition in the file for everyone («defs»), after the engine's rules (tools/engine_def.py) passed it
     seal ID GAME.json                puts it in the file for group B only («bdefs»), sealed with the group key (AES-256-GCM)
@@ -209,9 +209,14 @@ def cmd_remove(a):
 def cmd_on(a):
     if not ID.fullmatch(a.id): sys.exit("not an id")
     d = load()
-    if a.id not in d["defs"] and a.id not in d["bdefs"] and a.id not in engine_def.HELD: sys.exit(f"{a.id} has no definition: «add» or «seal» it first")
+    if a.native:
+        if a.id not in engine_def.HELD: sys.exit(f"{a.id} is not a game the app holds back (tools/engine_def.py HELD)")
+        if a.id in d["defs"] or a.id in d["bdefs"]: sys.exit(f"{a.id} has a definition: a native game has none (remove it first)")
+    elif a.id in engine_def.HELD: sys.exit(f"{a.id} is a game of the app's own list: use --native")
+    elif a.id not in d["defs"] and a.id not in d["bdefs"]: sys.exit(f"{a.id} has no definition: «add» or «seal» it first")
     if a.a is None and a.b is None: sys.exit("give --a and/or --b (a time, now or off)")
     g = d["games"].setdefault(a.id, {"a": False, "b": False})
+    if a.native: g["native"] = True
     if a.a is not None: g["a"] = when(a.a)
     if a.b is not None: g["b"] = when(a.b)
     save(d); print(a.id, g)
@@ -219,7 +224,7 @@ def cmd_on(a):
 
 def cmd_off(a):
     d = load()
-    if a.id in d["games"]: d["games"][a.id] = {"a": False, "b": False}
+    if a.id in d["games"]: d["games"][a.id] = {"a": False, "b": False, **({"native": True} if d["games"][a.id].get("native") else {})}
     save(d); print(a.id, "off for both")
 
 
@@ -233,8 +238,8 @@ def cmd_check(a):
     print("at", at.strftime("%Y-%m-%dT%H:%M:%SZ"), "(group B also has a game from its a time)")
     for g, v in d["games"].items():
         ea, eb = is_on(v.get("a"), at), is_on(v.get("b"), at)
-        has = g in d["defs"] or g in d["bdefs"] or g in engine_def.HELD
-        print(f"  {g:24s} A {'on ' if ea and (g in d['defs'] or g in engine_def.HELD) else 'off'}  B {'on ' if (ea or eb) and has else 'off'}  {'' if has else '(no definition: not on)'}")
+        has = g in d["defs"] or g in d["bdefs"] or v.get("native") is True
+        print(f"  {g:24s} A {'on ' if ea and (g in d['defs'] or v.get('native') is True) else 'off'}  B {'on ' if (ea or eb) and has else 'off'}  {'' if has else '(no definition: not on)'}")
 
 
 def cmd_rekey(a):
@@ -271,7 +276,7 @@ def main():
     x = sub.add_parser("add"); x.add_argument("file"); x.set_defaults(f=cmd_add)
     s = sub.add_parser("seal"); s.add_argument("id"); s.add_argument("file"); s.set_defaults(f=cmd_seal)
     m = sub.add_parser("remove"); m.add_argument("id"); m.set_defaults(f=cmd_remove)
-    o = sub.add_parser("on"); o.add_argument("id"); o.add_argument("--a"); o.add_argument("--b"); o.set_defaults(f=cmd_on)
+    o = sub.add_parser("on"); o.add_argument("id"); o.add_argument("--a"); o.add_argument("--b"); o.add_argument("--native", action="store_true"); o.set_defaults(f=cmd_on)
     f = sub.add_parser("off"); f.add_argument("id"); f.set_defaults(f=cmd_off)
     k = sub.add_parser("check"); k.add_argument("--at"); k.set_defaults(f=cmd_check)
     rk = sub.add_parser("rekey"); rk.add_argument("--keep", action="store_true"); rk.add_argument("--rounds", type=int, default=ROUNDS); rk.set_defaults(f=cmd_rekey)
