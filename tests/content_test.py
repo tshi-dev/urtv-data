@@ -28,6 +28,7 @@ def run(files):
 r = subprocess.run([sys.executable, str(ROOT / "tools/check_content.py"), str(ROOT / "content")], capture_output=True, text=True)
 check("content/ as it is passes", r.returncode == 0, r.stdout)
 good = {
+    "games-release.json": {"v": 1, "games": {"test-1": {"a": False, "b": False}}, "codes": []},
     "announcements.json": {"v": 1, "notices": [{"id": "eid-2027", "text": {"ar": "عيدكم مبارك", "en": "Eid Mubarak"}, "from": "2027-03-09", "to": "2027-03-12",
                                                 "min_app": "4.3.3", "dismissible": True}]},
     "devices.json": {"v": 1, "devices": [{"id": "tcl-g07", "match": {"brand": "TCL", "device": "G07"}, "defaults": {"lite": True}, "why": "weak"}]},
@@ -78,6 +79,14 @@ broken("seasonal.json", ["packs", 0, "url"], "https://github.com/tshi-dev/UrTV/r
 broken("seasonal.json", ["packs", 0, "count"], 0, "count")
 broken("prayer-adjustments.json", ["adjustments", 0, "where"], {"country": "Saudi"}, "where.country")
 broken("prayer-adjustments.json", ["v"], 2, '"v": 1')
+broken("games-release.json", ["games", "test-1", "a"], "2026-12-01", "UTC time")
+broken("games-release.json", ["games", "test-1", "a"], True, "now, false")
+broken("games-release.json", ["games", "test-1"], {"c": "now"}, "a and/or b only")
+broken("games-release.json", ["games", "Bad Id"], {"a": False}, "an id")
+broken("games-release.json", ["codes"], ["K7QF-2M9X"], "a record")
+broken("games-release.json", ["games"], [], "object of game ids")
+broken("games-release.json", ["v"], 2, '"v": 1')
+broken("games-release.json", ["games", "test-1"], {"a": "now", "b": "now"}, "no definition")
 d = copy.deepcopy(good)
 d["devices.json"]["devices"].append(copy.deepcopy(d["devices.json"]["devices"][0]))
 check("caught: an id twice", "id twice" in run(d).stdout)
