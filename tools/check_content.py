@@ -150,7 +150,93 @@ def school(d):
         last = a or last
 
 
-CHECKS = {"announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school}
+UTC_STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
+RELEASE_RECORD = re.compile(r"2:(\d{6,7}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{120})")
+
+
+def games_release(d):
+    """the games' remote release (UrTV docs/GAMES-RELEASE.md): per game two times (a: everyone, b: group B), the games' definitions (open, or sealed for group B), and the pass records; a definition must be one the engine can run"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import engine_def
+    games = d.get("games")
+    if not isinstance(games, dict):
+        bad("games-release.games", "an object of game ids")
+        games = {}
+    if len(json.dumps(d, ensure_ascii=False).encode("utf-8")) > 60000:
+        bad("games-release", "over 60000 bytes: the app reads 64 KB at most (a bigger game is a pack)")
+    for g in list(d.get("defs") or {}) + list(d.get("bdefs") or {}):
+        if g in engine_def.HELD:
+            bad(f"games-release.defs.{g}", "the id of a game of the app's own list: the app already has it (pick another id)")
+    for g, v in games.items():
+        w = f"games-release.games.{g}"
+        if not engine_def.ID.fullmatch(g):
+            bad(w, "an id: lower-case letters, digits and dashes, 2 to 40")
+        if not isinstance(v, dict) or not set(v) <= {"a", "b", "native"}:
+            bad(w, "an object with a and/or b (and \"native\": true for a game of the app's own list) only")
+            continue
+        if "native" in v:
+            if v["native"] is not True:
+                bad(w, "\"native\" is true or absent")
+            elif g not in engine_def.HELD:
+                bad(w, "\"native\" for an id the app does not hold back (the list is tools/engine_def.py HELD)")
+            elif g in (d.get("defs") if isinstance(d.get("defs"), dict) else {}) or g in (d.get("bdefs") if isinstance(d.get("bdefs"), dict) else {}):
+                bad(w, "\"native\" and a definition together: a native game has none")
+        elif g in engine_def.HELD:
+            bad(w, "an id of the app's own list needs \"native\": true (without it the app ignores the entry)")
+        for k, t in v.items():
+            if k == "native":
+                continue
+            if t is False or t == "now":
+                continue
+            if not (isinstance(t, str) and UTC_STAMP.fullmatch(t)):
+                bad(f"{w}.{k}", f"now, false, or a UTC time YYYY-MM-DDTHH:MM:SSZ: {t!r}")
+                continue
+            try:
+                dt.datetime.strptime(t, "%Y-%m-%dT%H:%M:%SZ")
+            except ValueError:
+                bad(f"{w}.{k}", f"no such time: {t}")
+    defs, bdefs = d.get("defs", {}), d.get("bdefs", {})
+    if not isinstance(defs, dict) or not isinstance(bdefs, dict):
+        bad("games-release.defs", "objects")
+        defs, bdefs = {}, {}
+    for g, m in defs.items():
+        w = f"games-release.defs.{g}"
+        if g not in games:
+            bad(w, "a definition of a game the file does not list")
+        if isinstance(m, dict) and m.get("id") != g:
+            bad(w, "the definition's id is not its key")
+        for why in engine_def.check_game(m):
+            bad(w, "not a game the engine can run: " + why)
+        src = m.get("source") if isinstance(m, dict) else None
+        if not (isinstance(src, dict) and isinstance(src.get("ar"), str) and ARABIC.search(src["ar"]) and len(src["ar"]) <= 120):
+            bad(w, "source: {ar, en} saying where the content comes from, an Arabic text of 120 characters at most")
+        if g in bdefs:
+            bad(w, "both open and sealed: one only")
+    for g, s in bdefs.items():
+        w = f"games-release.bdefs.{g}"
+        if g not in games:
+            bad(w, "a sealed definition of a game the file does not list")
+        if not (isinstance(s, str) and re.fullmatch(r"[0-9a-f]{56,200000}", s) and len(s) % 2 == 0):
+            bad(w, "a sealed value: hex of iv + ciphertext + tag (tools/games_release.py seal)")
+    for g, v in games.items():
+        if isinstance(v, dict) and any(v.get(k) not in (False, None) for k in ("a", "b")):
+            if g not in defs and g not in bdefs and v.get("native") is not True:
+                bad(f"games-release.games.{g}", "switched on with no definition: it would stay hidden")
+            if v.get("a") not in (False, None) and g not in defs:
+                bad(f"games-release.games.{g}", "on for everyone but its definition is sealed for group B only")
+    codes = d.get("codes", [])
+    if not isinstance(codes, list) or len(codes) > 30:
+        bad("games-release.codes", "a list of at most 30 records (a TV pays the slow part once for each)")
+        return
+    for i, c in enumerate(codes):
+        m = RELEASE_RECORD.fullmatch(c) if isinstance(c, str) else None
+        if not m or not 100000 <= int(m.group(1)) <= 1000000:
+            bad(f"games-release.codes[{i}]", "a record 2:rounds(100000..1000000):salt(hex, 8 bytes at least):check(64 hex):wrapped key(120 hex): make it with tools/games_release.py code")
+    if len(set(codes)) != len(codes):
+        bad("games-release.codes", "a record twice")
+
+
+CHECKS = {"games-release.json": games_release, "announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school}
 
 
 def main():

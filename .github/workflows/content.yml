@@ -26,10 +26,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p pub/notices pub/devices pub/seasonal pub/prayer pub/calendar
+          mkdir -p pub/notices pub/devices pub/seasonal pub/prayer pub/calendar pub/release
           cp content/announcements.json pub/notices/
           cp content/devices.json pub/devices/
           cp content/seasonal.json pub/seasonal/
           cp content/prayer-adjustments.json pub/prayer/adjustments.json
           cp content/sa-school.json pub/calendar/
-          python3 tools/publish.py --put pub/notices:notices --put pub/devices:devices --put pub/seasonal:seasonal --put pub/prayer:prayer --put pub/calendar:calendar -m "Content"
+          cp content/games-release.json pub/release/games.json
+          python3 tools/publish.py --put pub/notices:notices --put pub/devices:devices --put pub/seasonal:seasonal --put pub/prayer:prayer --put pub/calendar:calendar --put pub/release:release -m "Content"
