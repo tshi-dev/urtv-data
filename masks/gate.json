@@ -1,0 +1,2485 @@
+{
+ "counts": {
+  "haramain": {
+   "FIT": 0,
+   "FRONT-ONLY": "all (never cut)",
+   "REJECT": 0
+  },
+  "ksa-cities": {
+   "FIT": 1,
+   "FRONT-ONLY": 10,
+   "REJECT": 2
+  },
+  "nature": {
+   "FIT": 0,
+   "FRONT-ONLY": 15,
+   "REJECT": 1
+  },
+  "photos": {
+   "FIT": 2,
+   "FRONT-ONLY": 78,
+   "REJECT": 5
+  },
+  "sea": {
+   "FIT": 0,
+   "FRONT-ONLY": 19,
+   "REJECT": 0
+  },
+  "space": {
+   "FIT": 0,
+   "FRONT-ONLY": 7,
+   "REJECT": 5
+  }
+ },
+ "photos": {
+  "ksa-cities/1": {
+   "scores": {
+    "colon_cover": 0.0,
+    "cols": 0.194,
+    "cross": 0.131,
+    "crossing": true,
+    "diff": 0.0,
+    "digit_cover": 0.674,
+    "halo": 0.61,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0619,
+    "owner_ok": true,
+    "shift": 0.0,
+    "sky": 0.66,
+    "visible": 0.869
+   },
+   "verdict": "FIT",
+   "why": "the owner's own place (owner_ok): only the edge, halo and alignment checked"
+  },
+  "ksa-cities/10": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.918,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 2.21,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1615,
+    "shift": 0.0,
+    "sky": 0.226,
+    "visible": 0.082
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/11": {
+   "scores": {
+    "cols": 0.194,
+    "cross": 0.068,
+    "crossing": true,
+    "halo": 3.09,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1438,
+    "sky": 0.659,
+    "visible": 0.932
+   },
+   "verdict": "REJECT",
+   "why": "a fringe along the edge (3.09 > 3.0)"
+  },
+  "ksa-cities/12": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.23,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.17,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/13": {
+   "scores": {
+    "cols": 0.25,
+    "cross": 0.065,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.53,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1839,
+    "shift": 0.0,
+    "sky": 0.601,
+    "visible": 0.935
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/2": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.33,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1091,
+    "shift": 0.0,
+    "sky": 0.272,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/3": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.638,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.92,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0734,
+    "shift": 0.0,
+    "sky": 0.373,
+    "visible": 0.362
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/4": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.983,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.81,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.009,
+    "shift": 0.0,
+    "sky": 0.203,
+    "visible": 0.017
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/5": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.891,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.99,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1404,
+    "shift": 0.0,
+    "sky": 0.311,
+    "visible": 0.109
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/6": {
+   "scores": {
+    "cols": 0.194,
+    "cross": 0.175,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.36,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1294,
+    "shift": 0.0,
+    "sky": 0.561,
+    "visible": 0.825
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/7": {
+   "scores": {
+    "cols": 0.472,
+    "cross": 0.472,
+    "crossing": true,
+    "halo": 1.02,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1067,
+    "sky": 0.708,
+    "visible": 0.528
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "ksa-cities/8": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.67,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0915,
+    "shift": 0.0,
+    "sky": 0.398,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "ksa-cities/9": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.268,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.46,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1562,
+    "shift": 0.0,
+    "sky": 0.406,
+    "visible": 0.732
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/1": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.44,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0486,
+    "shift": 0.01,
+    "sky": 0.841,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "nature/10": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.622,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.34,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0026,
+    "shift": 0.0,
+    "sky": 0.365,
+    "visible": 0.378
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/11": {
+   "scores": {
+    "cols": 0.528,
+    "cross": 0.152,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.98,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.3076,
+    "shift": 0.0,
+    "sky": 0.356,
+    "visible": 0.848
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/12": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.85,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.13,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0762,
+    "shift": 0.0,
+    "sky": 0.152,
+    "visible": 0.15
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/13": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.53,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.1,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.088,
+    "shift": 0.0,
+    "sky": 0.388,
+    "visible": 0.47
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/14": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.53,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.707,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "nature/15": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.09,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0045,
+    "shift": 0.0,
+    "sky": 0.562,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "nature/16": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.348,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.79,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0299,
+    "shift": 0.0,
+    "sky": 0.453,
+    "visible": 0.652
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/2": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.861,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.3,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0501,
+    "shift": 0.0,
+    "sky": 0.277,
+    "visible": 0.139
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/3": {
+   "scores": {
+    "cols": 0.194,
+    "cross": 0.027,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.54,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0311,
+    "shift": 0.0,
+    "sky": 0.479,
+    "visible": 0.973
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/4": {
+   "scores": {
+    "cols": 0.694,
+    "cross": 0.693,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 2.55,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.2161,
+    "shift": 0.0,
+    "sky": 0.604,
+    "visible": 0.307
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/5": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.806,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.94,
+    "holes": 0,
+    "islands": 1,
+    "jagged": 0.198,
+    "shift": 0.0,
+    "sky": 0.287,
+    "visible": 0.194
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/6": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.376,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.34,
+    "holes": 2,
+    "islands": 1,
+    "jagged": 0.3012,
+    "shift": 0.0,
+    "sky": 0.294,
+    "visible": 0.624
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/7": {
+   "scores": {
+    "cols": 0.694,
+    "cross": 0.191,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.09,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0048,
+    "shift": 0.0,
+    "sky": 0.487,
+    "visible": 0.809
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/8": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.998,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.49,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0808,
+    "shift": 0.0,
+    "sky": 0.183,
+    "visible": 0.002
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "nature/9": {
+   "scores": {
+    "cols": 0.694,
+    "cross": 0.12,
+    "crossing": true,
+    "halo": 14.2,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1676,
+    "sky": 0.496,
+    "visible": 0.88
+   },
+   "verdict": "REJECT",
+   "why": "a fringe along the edge (14.2 > 3.0)"
+  },
+  "photos/-RlktmDy3Ec": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.267,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.15,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0081,
+    "shift": 0.0,
+    "sky": 0.414,
+    "visible": 0.733
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/01u4zLK54tE": {
+   "scores": {
+    "cols": 0.444,
+    "cross": 0.252,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.52,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1231,
+    "shift": 0.0,
+    "sky": 0.388,
+    "visible": 0.748
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/0SUho_B0nus": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.956,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.46,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0536,
+    "shift": 0.0,
+    "sky": 0.281,
+    "visible": 0.044
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/0rCJ-y3wx6g": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.943,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.94,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1458,
+    "shift": 0.0,
+    "sky": 0.206,
+    "visible": 0.057
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/0rvKw0fDiHk": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "halo": 0.29,
+    "holes": 2,
+    "islands": 0,
+    "jagged": 0.0354,
+    "sky": 0.404,
+    "visible": 1.0
+   },
+   "verdict": "REJECT",
+   "why": "the edge cuts through a face or a person"
+  },
+  "photos/207NEuFvjlg": {
+   "scores": {
+    "cols": 0.333,
+    "cross": 0.039,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.15,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0233,
+    "shift": 0.0,
+    "sky": 0.431,
+    "visible": 0.961
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/2gVgVf5CNAE": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.51,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.068,
+    "shift": 0.0,
+    "sky": 0.557,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/39n8YVSn0d4": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.83,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1189,
+    "shift": 0.0,
+    "sky": 0.138,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/3DPaL6XDcZE": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.429,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.51,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1348,
+    "shift": 0.01,
+    "sky": 0.301,
+    "visible": 0.571
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/4q87Z96NBYg": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.41,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1348,
+    "shift": 0.0,
+    "sky": 0.13,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/7EkyXZYeYsw": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.182,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.9,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0405,
+    "shift": 0.0,
+    "sky": 0.485,
+    "visible": 0.818
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/7vOpzRF33Zo": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.548,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.23,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1146,
+    "shift": 0.0,
+    "sky": 0.38,
+    "visible": 0.452
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/85ey1vFIwkc": {
+   "scores": {
+    "cols": 0.333,
+    "cross": 0.277,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.53,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.2041,
+    "shift": 0.0,
+    "sky": 0.403,
+    "visible": 0.723
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/9633dHhioC8": {
+   "scores": {
+    "cols": 0.583,
+    "cross": 0.334,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.53,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1287,
+    "shift": 0.0,
+    "sky": 0.231,
+    "visible": 0.666
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/9Jgo0Ix_TRw": {
+   "scores": {
+    "cols": 0.194,
+    "cross": 0.138,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.19,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.47,
+    "visible": 0.862
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/9f7oiGARGIg": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.62,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1477,
+    "shift": 0.0,
+    "sky": 0.658,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/9hWJs7iblh8": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.1,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.006,
+    "shift": 0.0,
+    "sky": 0.543,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/AC3T7tvwPrY": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.456,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.38,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1825,
+    "shift": 0.0,
+    "sky": 0.352,
+    "visible": 0.544
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/AGZgrNeq7Kg": {
+   "scores": {
+    "cols": 0.417,
+    "cross": 0.171,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.64,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0714,
+    "shift": 0.0,
+    "sky": 0.582,
+    "visible": 0.829
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/ARpmY5qq7Lk": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 2.74,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1057,
+    "shift": 0.0,
+    "sky": 0.672,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/D1RR-UEnsjw": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.88,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1306,
+    "shift": 0.0,
+    "sky": 0.241,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/G8_JBLFMWTg": {
+   "scores": {
+    "cols": 0.389,
+    "cross": 0.263,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.0,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0279,
+    "shift": 0.0,
+    "sky": 0.609,
+    "visible": 0.737
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/HbixalFpY1w": {
+   "scores": {
+    "cols": 0.472,
+    "cross": 0.259,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.25,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0411,
+    "shift": 0.02,
+    "sky": 0.493,
+    "visible": 0.741
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/IU-gFwAyazs": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.311,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.66,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0816,
+    "shift": 0.0,
+    "sky": 0.345,
+    "visible": 0.689
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/Iogsh4Cbdjs": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.59,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0866,
+    "shift": 0.0,
+    "sky": 0.138,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/Iy59i0M7oP4": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.716,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.46,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1536,
+    "shift": 0.0,
+    "sky": 0.318,
+    "visible": 0.284
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/LAj90eAXOZA": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.944,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.97,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0717,
+    "shift": 0.0,
+    "sky": 0.165,
+    "visible": 0.056
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/MV7iHCilMJc": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.37,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0776,
+    "shift": 0.0,
+    "sky": 0.161,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/NPDnHmYsl6Y": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.864,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.68,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0068,
+    "shift": 0.0,
+    "sky": 0.265,
+    "visible": 0.136
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/QOGeYSi11-w": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.999,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.63,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0449,
+    "shift": 0.0,
+    "sky": 0.13,
+    "visible": 0.001
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/RqfFauPXJx0": {
+   "scores": {
+    "cols": 0.806,
+    "cross": 0.285,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.9,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1814,
+    "shift": 0.0,
+    "sky": 0.235,
+    "visible": 0.715
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/SGZ5DkDOoRo": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.24,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0236,
+    "shift": 0.0,
+    "sky": 0.233,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/SUIMrEKVOXc": {
+   "scores": {
+    "cols": 0.278,
+    "cross": 0.17,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.04,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0088,
+    "shift": 0.0,
+    "sky": 0.398,
+    "visible": 0.83
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/THlO6Mkf5uI": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.7,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0396,
+    "shift": 0.0,
+    "sky": 0.279,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/UuzkCF-jmPY": {
+   "scores": {
+    "cols": 0.5,
+    "cross": 0.463,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.74,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1672,
+    "shift": 0.0,
+    "sky": 0.488,
+    "visible": 0.537
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/WpOMM4uE-F8": {
+   "scores": {
+    "cols": 0.306,
+    "cross": 0.04,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.14,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1085,
+    "shift": 0.0,
+    "sky": 0.503,
+    "visible": 0.96
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/XDtzu1D2P8c": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.66,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1161,
+    "shift": 0.0,
+    "sky": 0.135,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/Xm1wdkNUwrY": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.663,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.59,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1419,
+    "shift": 0.0,
+    "sky": 0.287,
+    "visible": 0.337
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/_5TOw0ED9Jk": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.952,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.24,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.145,
+    "shift": 0.01,
+    "sky": 0.225,
+    "visible": 0.048
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/_Fmibx42BVU": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.13,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0808,
+    "shift": 0.27,
+    "sky": 0.686,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/_TFgiFZyH6M": {
+   "scores": {
+    "cols": 0.444,
+    "cross": 0.377,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.82,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0625,
+    "shift": 0.0,
+    "sky": 0.27,
+    "visible": 0.623
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/_jfejQo2tZw": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.61,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0703,
+    "shift": 0.0,
+    "sky": 0.172,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/anozjF6uqI0": {
+   "scores": {
+    "colon_cover": 0.178,
+    "cols": 0.806,
+    "cross": 0.112,
+    "crossing": true,
+    "diff": 0.0,
+    "digit_cover": 0.185,
+    "halo": 0.11,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0543,
+    "shift": 0.0,
+    "sky": 0.466,
+    "visible": 0.888,
+    "zoom": 1.0
+   },
+   "verdict": "FIT",
+   "why": "clean, and the scenery crosses the clock's lower part (the whole photo)"
+  },
+  "photos/bRRy9ucK1rY": {
+   "scores": {
+    "cols": 0.361,
+    "cross": 0.114,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.47,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0704,
+    "shift": 0.0,
+    "sky": 0.487,
+    "visible": 0.886
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/ckfXPMb2_BI": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.81,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0763,
+    "shift": 0.0,
+    "sky": 0.328,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/dMSYsXdwl9M": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.15,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0978,
+    "shift": 0.0,
+    "sky": 0.143,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/dfglhJbc4Uc": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.989,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.67,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0769,
+    "shift": 0.0,
+    "sky": 0.15,
+    "visible": 0.011
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/e5UUZcgQ5IU": {
+   "scores": {
+    "cols": 0.111,
+    "cross": 0.021,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.53,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0893,
+    "shift": 0.0,
+    "sky": 0.572,
+    "visible": 0.979
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/eOWabmCNEdg": {
+   "scores": {
+    "cols": 0.5,
+    "cross": 0.099,
+    "crossing": true,
+    "halo": 0.71,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0212,
+    "sky": 0.422,
+    "visible": 0.901
+   },
+   "verdict": "REJECT",
+   "why": "the edge cuts through a face or a person"
+  },
+  "photos/efzvMAIpfWY": {
+   "scores": {
+    "cols": 0.556,
+    "cross": 0.546,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.17,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1979,
+    "shift": 0.0,
+    "sky": 0.347,
+    "visible": 0.454
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/epQdtCvBrc4": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.29,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1421,
+    "shift": 0.0,
+    "sky": 0.188,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/f5ZB0LHwi0s": {
+   "scores": {
+    "cols": 0.5,
+    "cross": 0.486,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.49,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.039,
+    "shift": 0.02,
+    "sky": 0.86,
+    "visible": 0.514
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/fNXY1xjZQYI": {
+   "scores": {
+    "cols": 0.611,
+    "cross": 0.328,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.54,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.185,
+    "shift": 0.0,
+    "sky": 0.257,
+    "visible": 0.672
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/fYTVHcpak2g": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.651,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.22,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1329,
+    "shift": 0.0,
+    "sky": 0.296,
+    "visible": 0.349
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/g9wCI64k2yw": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.909,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.63,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.014,
+    "shift": 0.0,
+    "sky": 0.164,
+    "visible": 0.091
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/gOqBe7ropxM": {
+   "scores": {
+    "cols": 0.417,
+    "cross": 0.159,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.29,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0364,
+    "shift": 0.01,
+    "sky": 0.613,
+    "visible": 0.841
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/iQR2jzuw9m8": {
+   "scores": {
+    "cols": 0.083,
+    "cross": 0.008,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.03,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0785,
+    "shift": 0.01,
+    "sky": 0.435,
+    "visible": 0.992
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/ihIKOg_lHgI": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.34,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0977,
+    "shift": 0.01,
+    "sky": 0.75,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/kzEFwhXPXwo": {
+   "scores": {
+    "cols": 0.306,
+    "cross": 0.306,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.31,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0533,
+    "shift": 0.01,
+    "sky": 0.462,
+    "visible": 0.694
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/ljEXet84nL8": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 2.25,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0923,
+    "shift": 0.0,
+    "sky": 0.142,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/lrhF4w-KKjA": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.75,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0556,
+    "shift": 0.0,
+    "sky": 0.418,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/nrhz95KUhrI": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.969,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.35,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0714,
+    "shift": 0.0,
+    "sky": 0.287,
+    "visible": 0.031
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/oem64GHBGH8": {
+   "scores": {
+    "cols": 0.694,
+    "cross": 0.652,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.97,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1742,
+    "shift": 0.0,
+    "sky": 0.377,
+    "visible": 0.348
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/pyThxd4x8Tk": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "halo": 5.36,
+    "holes": 0,
+    "islands": 1,
+    "jagged": 0.0922,
+    "sky": 0.83,
+    "visible": 0.0
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "photos/qGH25zv5xMk": {
+   "scores": {
+    "cols": 0.167,
+    "cross": 0.05,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.96,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.075,
+    "shift": 0.0,
+    "sky": 0.287,
+    "visible": 0.95
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/qqwX49ov8UY": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.901,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.31,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1149,
+    "shift": 0.0,
+    "sky": 0.302,
+    "visible": 0.099
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/r4ZSR0cKJw8": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.97,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.19,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0775,
+    "shift": 0.0,
+    "sky": 0.258,
+    "visible": 0.03
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/rVC6O_gDE0Q": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.33,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0556,
+    "shift": 0.03,
+    "sky": 0.714,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/rkRYbmPuhOE": {
+   "scores": {
+    "colon_cover": 0.232,
+    "cols": 1.0,
+    "cross": 0.234,
+    "crossing": true,
+    "diff": 0.0,
+    "digit_cover": 0.246,
+    "halo": 0.57,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0443,
+    "shift": 0.0,
+    "sky": 0.44,
+    "visible": 0.766,
+    "zoom": 1.0
+   },
+   "verdict": "FIT",
+   "why": "clean, and the scenery crosses the clock's lower part (the whole photo)"
+  },
+  "photos/s3leOixsIX0": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.26,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1013,
+    "shift": 0.0,
+    "sky": 0.173,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/s6g6ZSxM3kQ": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.89,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.0457,
+    "shift": 0.0,
+    "sky": 0.606,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/seX13AzLqls": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.573,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.19,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.055,
+    "shift": 0.0,
+    "sky": 0.383,
+    "visible": 0.427
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/t3dlLOhdEzs": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.45,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.11,
+    "shift": 0.0,
+    "sky": 0.203,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/tUqMoFE_eAE": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.17,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0947,
+    "shift": 0.0,
+    "sky": 0.142,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/ud9NlvvEzUI": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.56,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0374,
+    "shift": 0.0,
+    "sky": 0.632,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/uqAUg1zvMXQ": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.15,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0424,
+    "shift": 0.0,
+    "sky": 0.58,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/va9218QJFAk": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.52,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0487,
+    "shift": 0.0,
+    "sky": 0.144,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/w-yuRFSkbVw": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.34,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1317,
+    "shift": 0.01,
+    "sky": 0.534,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "photos/wMHauMZiQjg": {
+   "scores": {
+    "cols": 0.028,
+    "cross": 0.002,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.92,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.2143,
+    "shift": 0.0,
+    "sky": 0.367,
+    "visible": 0.998
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/wSJmlKMecHU": {
+   "scores": {
+    "cols": 0.472,
+    "cross": 0.372,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.8,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.1006,
+    "shift": 0.0,
+    "sky": 0.244,
+    "visible": 0.628
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/wTmGtmGQCjQ": {
+   "scores": {
+    "cols": 0.361,
+    "cross": 0.278,
+    "crossing": true,
+    "halo": 0.93,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1155,
+    "sky": 0.41,
+    "visible": 0.722
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "photos/xAPIN3qwZN0": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.71,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.26,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1294,
+    "shift": 0.0,
+    "sky": 0.287,
+    "visible": 0.29
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/xXqWVUvf_Gw": {
+   "scores": {
+    "cols": 0.139,
+    "cross": 0.017,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.69,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1357,
+    "shift": 0.0,
+    "sky": 0.267,
+    "visible": 0.983
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/yUcH008GS6A": {
+   "scores": {
+    "cols": 0.139,
+    "cross": 0.153,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.32,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1056,
+    "shift": 0.0,
+    "sky": 0.425,
+    "visible": 0.847
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "photos/yx7TJle8LhM": {
+   "scores": {
+    "cols": 0.194,
+    "cross": 0.181,
+    "crossing": true,
+    "halo": 0.71,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1067,
+    "sky": 0.719,
+    "visible": 0.819
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "sea/1": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.853,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.3,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0914,
+    "shift": 0.0,
+    "sky": 0.283,
+    "visible": 0.147
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/10": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.11,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.669,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "sea/11": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.682,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.26,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0864,
+    "shift": 0.0,
+    "sky": 0.378,
+    "visible": 0.318
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/12": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.11,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.601,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "sea/13": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.61,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1179,
+    "shift": 0.0,
+    "sky": 0.134,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/14": {
+   "scores": {
+    "cols": 0.639,
+    "cross": 0.639,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.14,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0847,
+    "shift": 0.0,
+    "sky": 0.349,
+    "visible": 0.361
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/15": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.9,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0245,
+    "shift": 0.0,
+    "sky": 0.602,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "sea/16": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.013,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.16,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.498,
+    "visible": 0.987
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/17": {
+   "scores": {
+    "cols": 0.528,
+    "cross": 0.505,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.91,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.482,
+    "visible": 0.495
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/18": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.03,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0476,
+    "shift": 0.0,
+    "sky": 0.159,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/19": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.743,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.91,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.0564,
+    "shift": 0.0,
+    "sky": 0.33,
+    "visible": 0.257
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/2": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.12,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0446,
+    "shift": 0.0,
+    "sky": 0.637,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "sea/3": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.919,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.56,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1065,
+    "shift": 0.0,
+    "sky": 0.272,
+    "visible": 0.081
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/4": {
+   "scores": {
+    "cols": 0.167,
+    "cross": 0.023,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.14,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0718,
+    "shift": 0.0,
+    "sky": 0.533,
+    "visible": 0.977
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/5": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.79,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0494,
+    "shift": 0.0,
+    "sky": 0.144,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/6": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.502,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.18,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.125,
+    "shift": 0.0,
+    "sky": 0.361,
+    "visible": 0.498
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/7": {
+   "scores": {
+    "cols": 0.167,
+    "cross": 0.143,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.52,
+    "holes": 1,
+    "islands": 0,
+    "jagged": 0.0462,
+    "shift": 0.0,
+    "sky": 0.366,
+    "visible": 0.857
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/8": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.981,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.41,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1353,
+    "shift": 0.0,
+    "sky": 0.161,
+    "visible": 0.019
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "sea/9": {
+   "scores": {
+    "cols": 0.417,
+    "cross": 0.152,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 1.05,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0763,
+    "shift": 0.0,
+    "sky": 0.463,
+    "visible": 0.848
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "space/1": {
+   "scores": {
+    "cols": 0.528,
+    "cross": 0.514,
+    "crossing": true,
+    "halo": 0.63,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1617,
+    "sky": 0.808,
+    "visible": 0.486
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "space/10": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.994,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.82,
+    "holes": 0,
+    "islands": 1,
+    "jagged": 0.0733,
+    "shift": 0.0,
+    "sky": 0.184,
+    "visible": 0.006
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "space/11": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.05,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.092,
+    "shift": 0.0,
+    "sky": 0.176,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "space/12": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.0,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.901,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "space/2": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.44,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0749,
+    "shift": 0.0,
+    "sky": 0.142,
+    "visible": 0.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "space/3": {
+   "scores": {
+    "cols": 0.861,
+    "cross": 0.861,
+    "crossing": true,
+    "halo": 0.14,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.1457,
+    "sky": 0.87,
+    "visible": 0.139
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "space/4": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.18,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0,
+    "shift": 0.0,
+    "sky": 0.794,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "space/5": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 1.0,
+    "crossing": true,
+    "halo": 0.25,
+    "holes": 0,
+    "islands": 1,
+    "jagged": 0.0135,
+    "sky": 0.644,
+    "visible": 0.0
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "space/6": {
+   "scores": {
+    "cols": 0.167,
+    "cross": 0.167,
+    "crossing": true,
+    "halo": 0.58,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.2051,
+    "sky": 0.823,
+    "visible": 0.833
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  },
+  "space/7": {
+   "scores": {
+    "cols": 1.0,
+    "cross": 0.457,
+    "crossing": true,
+    "diff": 0.0,
+    "halo": 0.64,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0784,
+    "shift": 0.0,
+    "sky": 0.312,
+    "visible": 0.543
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "no frame puts the scenery under the clock by the owner's rule (a quarter of a digit, never the colon)"
+  },
+  "space/8": {
+   "scores": {
+    "cols": 0.0,
+    "cross": 0.0,
+    "crossing": false,
+    "diff": 0.0,
+    "halo": 0.15,
+    "holes": 0,
+    "islands": 0,
+    "jagged": 0.0749,
+    "shift": 0.0,
+    "sky": 0.751,
+    "visible": 1.0
+   },
+   "verdict": "FRONT-ONLY",
+   "why": "the scenery does not reach the clock"
+  },
+  "space/9": {
+   "scores": {
+    "cols": 0.75,
+    "cross": 0.75,
+    "crossing": true,
+    "halo": 0.98,
+    "holes": 2,
+    "islands": 0,
+    "jagged": 0.1402,
+    "sky": 0.859,
+    "visible": 0.25
+   },
+   "verdict": "REJECT",
+   "why": "no sky found along the top"
+  }
+ },
+ "v": 1
+}

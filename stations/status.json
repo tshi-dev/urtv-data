@@ -1,0 +1,73 @@
+{
+ "v": 1,
+ "checked_ms": 1795268459891,
+ "checked": "2026-11-21T13:40:59Z",
+ "dead_after": 3,
+ "stations": {
+  "إذاعة القرآن الكريم - السعودية": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "إذاعة القرآن الكريم - مصر": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "الشيخ أبو بكر الشاطري": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "عبدالرحمن السديس": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "سعود الشريم": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "ماهر المعيقلي": {
+   "fails": 2,
+   "dead": false,
+   "mirrors": []
+  },
+  "مشاري العفاسي": {
+   "fails": 1,
+   "dead": false,
+   "mirrors": []
+  },
+  "سعد الغامدي": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "ياسر الدوسري": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "عبدالباسط عبدالصمد": {
+   "fails": 2,
+   "dead": false,
+   "mirrors": []
+  },
+  "محمد صديق المنشاوي": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "أحمد العجمي": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  },
+  "الشيخ عبدالله خياط": {
+   "fails": 0,
+   "dead": false,
+   "mirrors": []
+  }
+ }
+}

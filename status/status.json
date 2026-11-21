@@ -1,0 +1,165 @@
+{
+ "v": 1,
+ "updated": "2026-11-21T11:50:34Z",
+ "late": [
+  "games",
+  "games/quiz",
+  "markets"
+ ],
+ "datasets": {
+  "calendar": {
+   "updated": "2026-11-17T12:52:05Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 1354,
+   "writer": null,
+   "last_good_run": null,
+   "run": null,
+   "late_after_h": null,
+   "late": false
+  },
+  "devices": {
+   "updated": "2026-11-16T07:28:36Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 431,
+   "writer": "content.yml",
+   "last_good_run": "2026-11-19T07:49:11Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44482519984",
+   "late_after_h": null,
+   "late": false
+  },
+  "football/archive": {
+   "updated": "2026-11-21T10:52:51Z",
+   "v": 1,
+   "count": 6692,
+   "bytes": 12537305,
+   "writer": "football.yml",
+   "last_good_run": "2026-11-21T10:52:55Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44896359848",
+   "late_after_h": 8,
+   "late": false
+  },
+  "football/catalogue": {
+   "updated": "2026-11-18T15:15:58Z",
+   "v": 1,
+   "count": 3,
+   "bytes": 203345,
+   "writer": "catalogue.yml",
+   "last_good_run": "2026-11-18T15:16:05Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44288152914",
+   "late_after_h": 198,
+   "late": false
+  },
+  "football/leagues": {
+   "updated": "2026-11-21T10:26:00Z",
+   "v": 1,
+   "count": 22,
+   "bytes": 88464,
+   "writer": "football.yml",
+   "last_good_run": "2026-11-21T10:52:55Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44896359848",
+   "late_after_h": 8,
+   "late": false
+  },
+  "games": {
+   "updated": "2026-11-16T08:02:42Z",
+   "v": 1,
+   "count": 7,
+   "bytes": 314900,
+   "writer": "games.yml",
+   "last_good_run": "2026-11-16T08:02:46Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/43828101483",
+   "late_after_h": 50,
+   "late": true
+  },
+  "games/quiz": {
+   "updated": "2026-11-16T08:02:42Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 311557,
+   "writer": "games.yml",
+   "last_good_run": "2026-11-16T08:02:46Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/43828101483",
+   "late_after_h": 50,
+   "late": true
+  },
+  "markets": {
+   "updated": "2026-11-21T03:54:07Z",
+   "v": 1,
+   "count": 4,
+   "bytes": 194214,
+   "writer": "markets.yml",
+   "last_good_run": "2026-11-21T03:54:12Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44863360519",
+   "late_after_h": 2,
+   "late": true
+  },
+  "notices": {
+   "updated": "2026-11-16T07:28:36Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 28,
+   "writer": "content.yml",
+   "last_good_run": "2026-11-19T07:49:11Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44482519984",
+   "late_after_h": null,
+   "late": false
+  },
+  "photos": {
+   "updated": "2026-11-16T07:29:00Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 2695,
+   "writer": "seed.yml",
+   "last_good_run": "2026-11-16T07:29:05Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/43824116758",
+   "late_after_h": null,
+   "late": false
+  },
+  "prayer": {
+   "updated": "2026-11-16T07:28:36Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 32,
+   "writer": "content.yml",
+   "last_good_run": "2026-11-19T07:49:11Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44482519984",
+   "late_after_h": null,
+   "late": false
+  },
+  "release": {
+   "updated": "2026-11-19T07:49:07Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 1243,
+   "writer": null,
+   "last_good_run": null,
+   "run": null,
+   "late_after_h": null,
+   "late": false
+  },
+  "seasonal": {
+   "updated": "2026-11-16T07:28:36Z",
+   "v": 1,
+   "count": 1,
+   "bytes": 26,
+   "writer": "content.yml",
+   "last_good_run": "2026-11-19T07:49:11Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44482519984",
+   "late_after_h": null,
+   "late": false
+  },
+  "stations": {
+   "updated": "2026-11-20T14:11:44Z",
+   "v": 1,
+   "count": 6,
+   "bytes": 52634,
+   "writer": "stations.yml",
+   "last_good_run": "2026-11-20T14:11:48Z",
+   "run": "https://github.com/tshi-dev/urtv-data/actions/runs/44749592103",
+   "late_after_h": 192,
+   "late": false
+  }
+ }
+}
