@@ -27,11 +27,21 @@ def check(name, ok, detail=""):
 with tempfile.TemporaryDirectory() as t:
     t = Path(t)
     f = t / "games-release.json"; kf = t / "keys" / "group.key"
-    shutil.copy(ROOT / "content/games-release.json", f)
+    # the test's own EMPTY file: the committed content/games-release.json is the live release file (games and codes of the real groups), not a fixture
+    f.write_text(json.dumps({"v": 1, "games": {}, "codes": []}), encoding="utf-8")
     env = {**os.environ, "URTV_GAMES_RELEASE_FILE": str(f)}
 
+    # the tool runs with a CONTROLLING TERMINAL and its input on a pipe, as on a CI runner: getpass prefers /dev/tty then, and read the terminal instead of the pipe (Python 3.14: «Can not control echo», empty codes)
+    try:
+        import fcntl, pty, termios
+        _m, _s = pty.openpty()
+        def _tty():
+            os.setsid(); fcntl.ioctl(_s, termios.TIOCSCTTY, 0)
+    except (ImportError, OSError):
+        _tty = None
+
     def tool(*a, inp=None):
-        return subprocess.run([sys.executable, str(ROOT / "tools/games_release.py"), "--key-file", str(kf), *a], capture_output=True, text=True, input=inp, env=env)
+        return subprocess.run([sys.executable, str(ROOT / "tools/games_release.py"), "--key-file", str(kf), *a], capture_output=True, text=True, input=inp, env=env, preexec_fn=_tty, timeout=180)
 
     def data():
         d = json.loads(f.read_text(encoding="utf-8"))
@@ -43,8 +53,10 @@ with tempfile.TemporaryDirectory() as t:
         shutil.copy(f, d / "games-release.json")
         r = subprocess.run([sys.executable, str(ROOT / "tools/check_content.py"), str(d)], capture_output=True, text=True)
         return r.returncode == 0, r.stdout
+    def committed_ok():
+        return subprocess.run([sys.executable, str(ROOT / "tools/check_content.py"), str(ROOT / "content")], capture_output=True, text=True).returncode == 0
 
-    check("the file as committed is empty (no game, no definition, no code) and passes the check", json.loads(f.read_text()) == {"v": 1, "games": {}, "codes": []} and valid()[0])
+    check("the test starts from an empty file (no game, no definition, no code) that passes the check, and the file as committed passes it too", json.loads(f.read_text()) == {"v": 1, "games": {}, "codes": []} and valid()[0] and committed_ok())
     check("«code» before «key» refuses (no group key): nothing is written", tool("code", "--add").returncode != 0 and data()["codes"] == [])
     r = tool("key")
     check("«key» makes the group key in the key file (mode 600), prints no key, and a second run keeps it", r.returncode == 0 and kf.is_file() and oct(kf.stat().st_mode & 0o777) == "0o600" and len(bytes.fromhex(kf.read_text().strip())) == 32 and kf.read_text().strip() not in r.stdout and "already" in tool("key").stdout)

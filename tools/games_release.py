@@ -43,6 +43,15 @@ RECORD = re.compile(r"2:(\d{6,7}):([0-9a-f]{16,64}):([0-9a-f]{64}):([0-9a-f]{%d}
 FILE_MAX = 60_000   # the app reads 64 KB at most
 
 
+def hidden(prompt):
+    """A code typed by a person is read hidden from the terminal (getpass). A code piped in (the tests, a script) is read from stdin, never echoed and never printed:
+    getpass prefers /dev/tty whenever the process has one, so on a CI runner (Python 3.14) it read the terminal instead of the pipe, or could not turn echo off, and every
+    code came back empty. The prompt goes to stderr; end of input gives an empty code, which ends a list as before."""
+    if sys.stdin.isatty(): return getpass.getpass(prompt)
+    sys.stderr.write(prompt); sys.stderr.flush()
+    return sys.stdin.readline().rstrip("\r\n")
+
+
 def normalize(code):
     """what the app does with a typed code: Arabic-Indic and Persian digits as Latin, upper case, letters and digits only"""
     out = []
@@ -163,8 +172,8 @@ def cmd_code(a):
     if not ROUNDS_MIN <= a.rounds <= ROUNDS_MAX: sys.exit(f"--rounds: {ROUNDS_MIN} to {ROUNDS_MAX}")
     if a.add and len(d["codes"]) >= CODES_MAX: sys.exit(f"{CODES_MAX} records at most (every TV that enters a code pays the slow part once for each record)")
     if a.ask:
-        code = getpass.getpass(f"code (hidden, exactly {CODE_LEN} signs of {ALPHABET}): ")
-        if getpass.getpass("again: ") != code: sys.exit("the two do not match; nothing done")
+        code = hidden(f"code (hidden, exactly {CODE_LEN} signs of {ALPHABET}): ")
+        if hidden("again: ") != code: sys.exit("the two do not match; nothing done")
         if not valid_code(normalize(code)): sys.exit(f"a code is exactly {CODE_LEN} signs of {ALPHABET}")
         shown = None
     else:
@@ -248,7 +257,7 @@ def cmd_rekey(a):
     codes = []
     print("the codes that stay, one at a time (hidden); an empty line ends:")
     while True:
-        c = getpass.getpass("code: ")
+        c = hidden("code: ")
         if not c: break
         if not valid_code(normalize(c)): print(f"not a code ({CODE_LEN} signs of the alphabet), skipped"); continue
         if not any(group_key_of(c, r) == old for r in d["codes"]): print("that code is not in the file: skipped"); continue
