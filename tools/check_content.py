@@ -236,7 +236,20 @@ def games_release(d):
         bad("games-release.codes", "a record twice")
 
 
-CHECKS = {"games-release.json": games_release, "announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school}
+def doctor(d):
+    """the 4.3.7+ offer of «فحص تلفزيونك» (sa.urtv.doctor): on/off and the Downloader code the card shows; off or no code = no card"""
+    if set(d) - {"v", "on", "code"}:
+        bad("doctor", "only v, on, code")
+    if not isinstance(d.get("on"), bool):
+        bad("doctor.on", "true or false")
+    c = d.get("code", "")
+    if not (isinstance(c, str) and re.fullmatch(r"\d{0,9}", c)):
+        bad("doctor.code", f"Downloader's numeric code (digits only, empty while off): {c!r}")
+    elif d.get("on") is True and not c:
+        bad("doctor", "on with no code: the card would have nothing to show")
+
+
+CHECKS = {"games-release.json": games_release, "announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school, "doctor.json": doctor}
 
 
 def main():
