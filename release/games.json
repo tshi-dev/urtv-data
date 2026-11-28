@@ -1,0 +1,64 @@
+{
+ "v": 1,
+ "games": {
+  "forehead": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "author": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "closest": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "liar": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "emoji": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "link": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "night": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "draw": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "quran-verse": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "maths": {
+   "a": false,
+   "b": "now",
+   "native": true
+  },
+  "logic": {
+   "a": false,
+   "b": "now",
+   "native": true
+  }
+ },
+ "codes": [
+  "2:300000:97a7f953639b0ee8feeee8cdf8db2d76:fcf9d62673255300163c3dd9303e277a1c4de3319180119ea700af0a8b004b8a:190d29eaddf5e5f0824fbd8f5efc85873faddf7ecdf993ff6aeba4cbaf8367251dccb52c3a4b645dd66a959fcb40c40e152bcb6b986ea3902d3ee378",
+  "2:300000:be9e21d7de33c3252a6e211dca82880a:07af6f72096cb0ce7478439fd6ba4bb1d8284b4b2a4e71bf6bc1a6ce4dd03aa6:8cd483a434323c070747e1817ae11668e84639f8b4de3c6ee22fd87a88464f13720792419182c4616edae7428c054d18f0c278be045387da4927d79c"
+ ]
+}

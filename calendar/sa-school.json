@@ -1,0 +1,51 @@
+{
+  "v": 1,
+  "source": "https://www.moe.gov.sa/ar/education/academic-calendar",
+  "sources": [
+    "https://www.moe.gov.sa/ar/education/academic-calendar",
+    "https://ajel.sa/guide/school-calendar",
+    "https://ajel.sa/guide/school-calendar/eid-holidays",
+    "https://www.okaz.com.sa/local/na/2256793",
+    "https://sabq.org/article/9lewsyu",
+    "https://sabq.org/mawaeed/school-calendar-1448"
+  ],
+  "note": "Start dates and the end-of-year break are from the Ministry of Education's calendar page; the other end dates (the last day off) are from Saudi news sites, each seen in two or more. Eid dates may move by a day with the moon sighting. The extra days off that Riyadh, Qassim and most regions take (29 Nov 2026, 7 Jan 2027, 11 Apr 2027, per Sabq) are included, so a region without them may return a day earlier.",
+  "updated": "2026-11-27",
+  "breaks": [
+    {
+      "name": "إجازة الخريف",
+      "from": "2026-11-20",
+      "to": "2026-11-29"
+    },
+    {
+      "name": "إجازة منتصف العام الدراسي",
+      "from": "2027-01-07",
+      "to": "2027-01-16"
+    },
+    {
+      "name": "إجازة يوم التأسيس",
+      "from": "2027-02-19",
+      "to": "2027-02-22"
+    },
+    {
+      "name": "إجازة عيد الفطر",
+      "from": "2027-02-26",
+      "to": "2027-03-13"
+    },
+    {
+      "name": "إجازة إضافية",
+      "from": "2027-04-11",
+      "to": "2027-04-11"
+    },
+    {
+      "name": "إجازة عيد الأضحى",
+      "from": "2027-05-07",
+      "to": "2027-05-22"
+    },
+    {
+      "name": "إجازة نهاية العام الدراسي",
+      "from": "2027-06-25",
+      "to": "2027-08-21"
+    }
+  ]
+}
