@@ -33,4 +33,5 @@ jobs:
           cp content/prayer-adjustments.json pub/prayer/adjustments.json
           cp content/sa-school.json pub/calendar/
           cp content/games-release.json pub/release/games.json
+          cp content/doctor.json pub/release/doctor.json
           python3 tools/publish.py --put pub/notices:notices --put pub/devices:devices --put pub/seasonal:seasonal --put pub/prayer:prayer --put pub/calendar:calendar --put pub/release:release -m "Content"
