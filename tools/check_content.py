@@ -251,11 +251,16 @@ def doctor(d):
 
 CHECKS = {"games-release.json": games_release, "announcements.json": notices, "devices.json": devices, "seasonal.json": seasonal, "prayer-adjustments.json": prayer, "sa-school.json": school, "doctor.json": doctor}
 
+# a missing optional file is fine: the app treats it as off
+OPTIONAL = {"doctor.json"}
+
 
 def main():
     root = Path(sys.argv[1] if len(sys.argv) > 1 else "content")
     for name, fn in CHECKS.items():
         p = root / name
+        if name in OPTIONAL and not p.exists():
+            continue
         try:
             d = json.loads(p.read_text(encoding="utf-8"))
         except (OSError, ValueError) as e:
